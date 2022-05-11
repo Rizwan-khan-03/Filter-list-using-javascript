@@ -149,12 +149,30 @@ var fruitsobject = [
     var myForm=document.getElementById('myForm');
       myForm.addEventListener('submit',function(event){
       event.preventDefault();
-      var formInput=document.getElementById('formInput').value;
-      fruits.push(formInput)
-      //make list with map
-      ul.innerHTML=(fruits.map(function (item) {
-      return '<li>' +item + '</li>';
-    })).join('');
+      var formInput=document.getElementById('formInput');
+      //remove extra apace from input
+      // newStr = myStr.replace(/  +/g, '');
+      
+      var letterNumber = /^[0-9]+$/;
+     
+      if( formInput.value == null ||formInput.value.match(/^ *$/) !== null ||formInput.value.match(letterNumber) ) {
+        alert("invalid text");
+        formInput.value="";
+        return false;
+      }
+      // else if(formInput.value.match(letterNumber)){
+      //   alert("number not ecapt");
+      //   formInput.value="";
+      //   return false;
+      // }
+      else{
+        fruits.push(formInput.value)
+        //make list with map
+        ul.innerHTML=(fruits.map(function (item) {
+        return '<li>' +item + '</li>';
+      })).join('');
+      }
+   
 
     })
     // console.log(arr)
